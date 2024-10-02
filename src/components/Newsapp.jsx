@@ -13,6 +13,11 @@ const Newsapp = () => {
                 <h1 className='font-mono'>Daily Observer</h1>
                 <IoSearchOutline/>
             </div>
+            <div className='mx-10 my-8'>
+                <hr />
+                <hr />
+            </div>
+            
         </nav>
     </div>
   )
