@@ -1,8 +1,11 @@
 import React from 'react'
 
-const Card = () => {
+const Card = ({newsData}) => {
   return (
-    <div>Card</div>
+    <div>
+      Cards
+
+    </div>
   )
 }
 
