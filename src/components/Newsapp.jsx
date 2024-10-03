@@ -1,13 +1,19 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { IoSearchOutline } from "react-icons/io5";
 
 const Newsapp = () => {
-    
+
+    const [search, setsearch] = useState("Bangladesh");
     const API_key = "4f5540126cbb4761aa2ad206554234dd";
     const getData = async() => {
-        const response = await fetch(`https://newsapi.org/v2/everything?q=tesla&apiKey=${API_key}`);
+        const response = await fetch(`https://newsapi.org/v2/everything?q=${search}&apiKey=${API_key}`);
         const jsonData = await response.json();
         console.log(jsonData);
+    }
+
+    const handleInput = (e) =>{
+        console.log(e.target.value);
+        setsearch(e.target.value);
     }
 
   return (
@@ -21,7 +27,7 @@ const Newsapp = () => {
                 </h2>
                 <h1 className='font-mono text-5xl mt-4 mb-3'>Daily Observer</h1>
                 <div className='px-3  mt-4 mb-3'>
-                    <input  type="text" placeholder="Search..."className='border border-gray-300 px-2 py-1 rounded-xl shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent' />
+                    <input onChange={handleInput}  type="text" placeholder="Search..."className='border border-gray-300 px-2 py-1 rounded-xl shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent' />
                     <button onClick={getData} type="submit" className='absolute px-3 py-1'> <IoSearchOutline className='size-6'/> </button>
                 </div>
             </div>
