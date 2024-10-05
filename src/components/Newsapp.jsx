@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { IoSearchOutline } from "react-icons/io5";
 import Card from './Card';
+import { FiDivideCircle } from 'react-icons/fi';
 
 const Newsapp = () => {
 
@@ -23,7 +24,7 @@ const Newsapp = () => {
 
   return (
     <div>
-        <nav className='absolute w-full top-0'>
+        <nav className='relative w-full top-0'>
             <div className='flex justify-between mx-11 my-5 '>
                 <h2 className=' mt-4 mb-3'>
                     date:
@@ -50,7 +51,10 @@ const Newsapp = () => {
                 <hr />
                 <hr />
             </div>
-            <Card data={newsData}/>
+            <div className='flex'>
+                <Card data={newsData}/>
+                <Card/>
+            </div>
         </nav>
     </div>
   )
