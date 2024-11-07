@@ -1,25 +1,38 @@
-import React from 'react'
+import React from 'react';
 
-const Card = ({data}) => {
-    console.log(data)
-  return (
-    <div className='flex flex-wrap justify-start'>
-        {data.map((curItem,index)=>(
-            <div key={index} className='w-[15rem] h-[22rem] m-[.93rem] bg-slate-200 rounded-lg shadow-xl'>
-                {curItem.urlToImage ? (<img src={curItem.urlToImage} alt={curItem.urlToImage} className="w-full h-[8rem] object-cover"/>):
-                ( <div className='w-full h-[8rem] bg-gray-300 flex items-center justify-center'>
-                    <p>No image available.</p>
-                </div> )}
-                <div className='p-2'>
-                    <h3 className="font-bold text-lg mb-1">{`${curItem.title.slice(0,80)}`}</h3>
-                    <p className='text-sm mb-2'>{curItem.description ? `${curItem.description.slice(0, 80)}...` 
-                    : ( <p>No description available.</p> )}</p>
-                    <a href={curItem.url} target="_blank" className='text-blue-600 underline'>Read more...</a>
-                </div>
-            </div>
-        ))}
-    </div>
-  )
-}
+const Card = ({ data }) => {
+    console.log(data);
 
-export default Card
+    return (
+        <div className="flex flex-wrap justify-center gap-10 p-4">
+            {data.map((curItem, index) => {
+                if (!curItem.urlToImage) return null;
+                
+                return (
+                    <div key={index} className="w-80 bg-white shadow-lg rounded-lg border border-gray-200 overflow-hidden">
+                        <img src={curItem.urlToImage} alt="News Thumbnail" className="w-full h-48 object-cover" />
+                        <div className="p-4">
+                            <a
+                                href={curItem.url}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="block text-lg font-semibold text-blue-600 hover:underline"
+                            >
+                                {curItem.title}
+                            </a>
+                            <p className="mt-2 text-gray-600">{curItem.description}</p>
+                            <button
+                                onClick={() => window.open(curItem.url)}
+                                className="mt-3 px-4 py-2 bg-blue-500 text-white text-sm rounded hover:bg-blue-600"
+                            >
+                                Read More
+                            </button>
+                        </div>
+                    </div>
+                );
+            })}
+        </div>
+    );
+};
+
+export default Card;
