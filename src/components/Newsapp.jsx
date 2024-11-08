@@ -86,7 +86,7 @@ const Newsapp = () => {
                 {newsData ? (
                     <Card data={newsData} />
                 ) : (
-                    <p className="text-center text-gray-600">Search any news.</p>
+                    <p className="text-center text-gray-600">You can search news from the search box.</p>
                 )}
             </div>
         </div>
