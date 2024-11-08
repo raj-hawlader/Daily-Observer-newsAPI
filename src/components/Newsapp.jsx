@@ -10,9 +10,13 @@ const Newsapp = () => {
     const API_KEY = "4f5540126cbb4761aa2ad206554234dd";
 
     const getData = async () => {
-        const response = await fetch(`https://newsapi.org/v2/everything?q=${search}&apiKey=${API_KEY}`);
-        const jsonData = await response.json();
-        setNewsData(jsonData.articles.slice(0, 10));  // Limit results to 10 for simplicity
+        try {
+            const response = await fetch(`https://newsapi.org/v2/everything?q=${search}&apiKey=${API_KEY}`);
+            const jsonData = await response.json();
+            setNewsData(jsonData.articles.slice(0, 10));
+        } catch (error) {
+            console.error("Error fetching news data:", error);
+        }
     };
 
     const handleInput = (e) => {
@@ -25,7 +29,10 @@ const Newsapp = () => {
     };
 
     useEffect(() => {
-        const timer = setInterval(() => setCurrentTime(new Date()), 60000); // Update time every minute
+        getData(); 
+    }, []);
+    useEffect(() => {
+        const timer = setInterval(() => setCurrentTime(new Date()), 60000); 
         return () => clearInterval(timer);
     }, []);
 
